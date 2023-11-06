@@ -1,5 +1,6 @@
 // See https://github.com/typicode/json-server#module
 const jsonServer = require("json-server");
+const cors = require("cors");
 // const auth = require("json-server-auth");
 
 const server = jsonServer.create();
@@ -18,6 +19,12 @@ const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
 server.db = router.db;
 
+// const corsOption = {
+//   origin: "*",
+//   optionSuccessStatus: 200,
+// };
+
+server.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
 server.use(middlewares);
 // server.use(auth);
 server.use(router);
